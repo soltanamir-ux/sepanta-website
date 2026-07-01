@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Sepanta LLC — design tokens (Tailwind v4 CSS-first theme).
+   Deep midnight-navy base with a vivid coral accent.
+   Font variables (--font-*) are injected by next/font in app/layout.tsx.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  /* Surfaces & lines */
+  --color-midnight: #0b1120;
+  --color-surface: #121b31;
+  --color-elevated: #18233f;
+  --color-line: #273450;
+
+  /* Text */
+  --color-ink: #f6f8fc;
+  --color-ink-soft: #cbd5e1;
+  --color-muted: #9dabc7;
+
+  /* Vivid accent + supporting glow */
+  --color-accent: #ff6a3d;
+  --color-accent-strong: #f5522e;
+  --color-glow: #ff9a5b;
+
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Base layer ─────────────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* offset anchor targets so the sticky navbar doesn't cover them */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-midnight);
+    color: var(--color-muted);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Visible focus for keyboard users on every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    color: var(--color-ink);
+  }
+}
+
+/* ── Reusable component classes ─────────────────────────────── */
+
+/* Gradient headline text */
+.gradient-text {
+  background-image: linear-gradient(120deg, var(--color-glow) 0%, var(--color-accent) 55%, var(--color-accent-strong) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft radial glow used behind hero / CTA */
+.glow-backdrop {
+  background: radial-gradient(
+    60% 60% at 50% 0%,
+    color-mix(in srgb, var(--color-accent) 22%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+/* Subtle dotted grid backdrop */
+.grid-backdrop {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-muted) 16%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+}
+
+/* Card surface with soft shadow + hover lift */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  box-shadow: 0 1px 0 0 color-mix(in srgb, #fff 4%, transparent) inset,
+    0 20px 40px -24px rgba(0, 0, 0, 0.7);
+  transition: transform 0.35s var(--ease-out-expo),
+    border-color 0.35s var(--ease-out-expo),
+    box-shadow 0.35s var(--ease-out-expo);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+  box-shadow: 0 1px 0 0 color-mix(in srgb, #fff 6%, transparent) inset,
+    0 30px 60px -28px rgba(0, 0, 0, 0.8);
+}
+
+/* Long-form legal / prose blocks */
+.prose-legal {
+  color: var(--color-ink-soft);
+  line-height: 1.75;
+}
+.prose-legal h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+.prose-legal h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+.prose-legal p,
+.prose-legal ul,
+.prose-legal ol {
+  margin-bottom: 1rem;
+}
+.prose-legal ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+.prose-legal ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+}
+.prose-legal li {
+  margin-bottom: 0.4rem;
+}
+.prose-legal a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-legal strong {
+  color: var(--color-ink);
+}
+
+/* ── Scroll-in reveal animation (driven by components/Reveal.tsx) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .card {
+    transition: none;
+  }
+}

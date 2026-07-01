@@ -1,0 +1,18 @@
+<svg width="212" height="40" viewBox="0 0 212 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sepanta LLC logo">
+  <defs>
+    <linearGradient id="sepanta-mark-grad" x1="6" y1="4" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9a5b"/>
+      <stop offset="0.55" stop-color="#ff6a3d"/>
+      <stop offset="1" stop-color="#f5522e"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="36" height="36" rx="11" fill="url(#sepanta-mark-grad)"/>
+  <g fill="#0b1120">
+    <rect x="12" y="10.5" width="16" height="4.2" rx="2.1"/>
+    <rect x="12" y="17.9" width="16" height="4.2" rx="2.1"/>
+    <rect x="12" y="25.3" width="16" height="4.2" rx="2.1"/>
+    <rect x="12" y="10.5" width="4.2" height="11.6" rx="2.1"/>
+    <rect x="23.8" y="17.9" width="4.2" height="11.6" rx="2.1"/>
+  </g>
+  <text x="52" y="27.5" font-family="'Space Grotesk', 'Segoe UI', system-ui, sans-serif" font-size="23" font-weight="700" letter-spacing="-0.5" fill="#f6f8fc">Sepanta</text>
+</svg>
