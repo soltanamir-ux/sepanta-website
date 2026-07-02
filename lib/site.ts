@@ -15,8 +15,8 @@ export const siteConfig = {
   tagline: "We build apps that solve everyday problems.",
 
   // ── Contact / legal details (fill these in — see README) ──────────────
-  contactEmail: "[YOUR EMAIL]", // e.g. hello@sepanta.llc
-  address: "[YOUR ADDRESS]", // registered business address
+  contactEmail: "info@sepanta.llc",
+  address: "18821 Breezeway CIR, Olney, MD 20878",
   governingLawState: "Maryland",
   country: "United States",
 
